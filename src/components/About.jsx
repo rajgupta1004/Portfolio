@@ -24,7 +24,7 @@ const About = () => {
               <p className="text-gray-300 leading-relaxed text-lg">
                 I am <span className="text-white font-medium">{portfolioData.personal.name}</span>, a passionate 
                 student and aspiring developer based in {portfolioData.personal.location}. I am currently pursuing my 
-                B.Tech in Mechanical Engineering at {portfolioData.personal.college}.
+                B.Tech in Computer Science and Engineering at {portfolioData.personal.college}.
               </p>
               <p className="text-gray-300 leading-relaxed text-lg">
                 {portfolioData.personal.about}

@@ -9,7 +9,7 @@ export const portfolioData = {
     github: "https://github.com/rajgupta1004/main",
     linkedin: "https://www.linkedin.com/in/raj-gupta-463894384/",
     resumeUrl: "/resume.html",
-    about: "I am a B.Tech Mechanical Engineering student at SVIET Chandigarh with an interest in technology, computer design, software development, and building useful digital projects. Currently learning and exploring web development technologies to build modern frontend and full stack applications. My goal is to leverage my problem-solving skills from mechanical engineering and apply them to software engineering to create impactful digital experiences.",
+    about: "I am a B.Tech Computer Science and Engineering student at SVIET Chandigarh with a strong passion for software development, full stack web technologies, and building useful digital projects. Currently learning and exploring web development technologies to build modern frontend and full stack applications. My goal is to apply my programming and problem-solving skills to craft efficient, scalable, and impactful digital experiences.",
   },
   skills: {
     languages: ["JavaScript", "Python", "Java", "C++"],
@@ -30,7 +30,7 @@ export const portfolioData = {
   education: [
     {
       id: 1,
-      degree: "B.Tech Mechanical Engineering",
+      degree: "B.Tech Computer Science and Engineering",
       college: "SVIET Chandigarh",
       duration: "Currently pursuing",
       score: ""
