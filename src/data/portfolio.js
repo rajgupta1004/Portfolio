@@ -19,30 +19,12 @@ export const portfolioData = {
   projects: [
     {
       id: 1,
-      name: "[PROJECT NAME]",
-      description: "[DESCRIPTION]",
-      tech: "[TECH STACK]",
-      github: "[URL]",
-      liveDemo: "[URL]",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-      id: 2,
-      name: "[PROJECT NAME]",
-      description: "[DESCRIPTION]",
-      tech: "[TECH STACK]",
-      github: "[URL]",
-      liveDemo: "[URL]",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-      id: 3,
-      name: "[PROJECT NAME]",
-      description: "[DESCRIPTION]",
-      tech: "[TECH STACK]",
-      github: "[URL]",
-      liveDemo: "[URL]",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
+      name: "RiseVerse",
+      description: "A prototype of the RiseVerse platform connecting co-founders, founders, investors, and startup ideas into a unified ecosystem to turn visionary concepts into grounded, actionable growth plans.",
+      tech: "React, Tailwind CSS, JavaScript, Vercel",
+      github: "https://github.com/rajgupta1004",
+      liveDemo: "https://rise-verse-nu.vercel.app/",
+      image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80&w=800"
     }
   ],
   education: [
