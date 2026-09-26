@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,18 +9,55 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-dark-900 text-gray-100 font-sans antialiased selection:bg-primary-500 selection:text-white;
+    @apply bg-dark-950 text-gray-100 font-sans antialiased selection:bg-primary-500 selection:text-white;
+    background-color: #030712;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #070c18;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #2563eb, #8b5cf6);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #3b82f6, #a855f7);
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-dark-800/60 backdrop-blur-md border border-gray-700/50 shadow-xl;
+    @apply bg-dark-900/70 backdrop-blur-xl border border-white/[0.08] shadow-glass-card;
+  }
+  .glass-card {
+    @apply bg-dark-850/60 backdrop-blur-lg border border-white/[0.07] hover:border-primary-500/40 shadow-xl transition-all duration-300;
+  }
+  .glass-nav {
+    @apply bg-dark-950/80 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl;
   }
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-accent-400 to-pink-400;
   }
-  .bg-gradient-radial {
-    background-image: radial-gradient(var(--tw-gradient-stops));
+  .text-gradient-cyan {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-primary-400 to-indigo-400;
+  }
+  .text-gradient-purple {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-400 via-purple-400 to-pink-400;
+  }
+  .bg-cyber-grid {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+  .bg-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 }
+
