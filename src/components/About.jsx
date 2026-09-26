@@ -36,13 +36,21 @@ const About = () => {
                 What Drives Me
               </h3>
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="bg-dark-800/50 p-6 rounded-2xl border border-gray-700/50 hover:border-primary-500/50 transition-colors">
-                     <h4 className="text-primary-400 font-medium mb-2">My Focus</h4>
-                     <p className="text-gray-400 text-sm">Building clean, responsive, and user-centric frontend and full stack applications.</p>
+                  <div className="bg-dark-800/50 p-5 rounded-2xl border border-gray-700/50 hover:border-primary-500/50 transition-colors">
+                     <h4 className="text-primary-400 font-medium mb-1">Web Development</h4>
+                     <p className="text-gray-400 text-xs leading-relaxed">Building clean, responsive, and user-centric frontend and full stack web applications.</p>
                   </div>
-                  <div className="bg-dark-800/50 p-6 rounded-2xl border border-gray-700/50 hover:border-accent-500/50 transition-colors">
-                     <h4 className="text-accent-400 font-medium mb-2">My Approach</h4>
-                     <p className="text-gray-400 text-sm">Applying analytical problem-solving skills to craft efficient digital solutions.</p>
+                  <div className="bg-dark-800/50 p-5 rounded-2xl border border-gray-700/50 hover:border-pink-500/50 transition-colors">
+                     <h4 className="text-pink-400 font-medium mb-1">Graphic Design</h4>
+                     <p className="text-gray-400 text-xs leading-relaxed">Creating striking visual compositions, banners, posters, and Photoshop artwork.</p>
+                  </div>
+                  <div className="bg-dark-800/50 p-5 rounded-2xl border border-gray-700/50 hover:border-amber-500/50 transition-colors">
+                     <h4 className="text-amber-400 font-medium mb-1">Video Editing</h4>
+                     <p className="text-gray-400 text-xs leading-relaxed">Crafting engaging video edits, smooth pacing, sound sync, and dynamic reels.</p>
+                  </div>
+                  <div className="bg-dark-800/50 p-5 rounded-2xl border border-gray-700/50 hover:border-accent-500/50 transition-colors">
+                     <h4 className="text-accent-400 font-medium mb-1">My Approach</h4>
+                     <p className="text-gray-400 text-xs leading-relaxed">Applying analytical problem-solving skills to craft impactful digital solutions.</p>
                   </div>
                </div>
             </div>

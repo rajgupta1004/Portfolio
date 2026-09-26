@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Download, Mail } from 'lucide-react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaGoogleDrive } from 'react-icons/fa';
 import { portfolioData } from '../data/portfolio';
 
 const Hero = () => {
@@ -37,7 +37,19 @@ const Hero = () => {
               computer design, software development, and building useful digital projects.
             </p>
             
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-wrap gap-2.5 pt-1">
+              <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary-500/10 border border-primary-500/20 text-primary-300">
+                💻 Web Development
+              </span>
+              <span className="px-3 py-1 rounded-full text-xs font-medium bg-pink-500/10 border border-pink-500/20 text-pink-300">
+                🎨 Graphic Design & Photoshop
+              </span>
+              <span className="px-3 py-1 rounded-full text-xs font-medium bg-amber-500/10 border border-amber-500/20 text-amber-300">
+                🎬 Video Editing
+              </span>
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <a 
                 href="#projects" 
                 className="px-8 py-3 rounded-full bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-500 hover:to-accent-500 text-white font-medium transition-all shadow-lg hover:shadow-primary-500/25 flex items-center gap-2 group"
@@ -58,14 +70,17 @@ const Hero = () => {
             </div>
             
             <div className="flex items-center gap-6 pt-4 border-t border-gray-800">
-              <span className="text-gray-500 text-sm">Connect with me:</span>
-              <a href={portfolioData.personal.github} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors p-2 glass rounded-full hover:bg-dark-700/50">
+              <span className="text-gray-500 text-sm">Connect & Portfolios:</span>
+              <a href={portfolioData.personal.github} target="_blank" rel="noreferrer" title="GitHub" className="text-gray-400 hover:text-white transition-colors p-2 glass rounded-full hover:bg-dark-700/50">
                 <FaGithub size={20} />
               </a>
-              <a href={portfolioData.personal.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors p-2 glass rounded-full hover:bg-dark-700/50">
+              <a href={portfolioData.personal.linkedin} target="_blank" rel="noreferrer" title="LinkedIn" className="text-gray-400 hover:text-white transition-colors p-2 glass rounded-full hover:bg-dark-700/50">
                 <FaLinkedin size={20} />
               </a>
-              <a href={`mailto:${portfolioData.personal.email}`} className="text-gray-400 hover:text-white transition-colors p-2 glass rounded-full hover:bg-dark-700/50">
+              <a href={portfolioData.personal.photoshopDrive} target="_blank" rel="noreferrer" title="Photoshop Google Drive" className="text-pink-400 hover:text-pink-300 transition-colors p-2 glass rounded-full hover:bg-dark-700/50">
+                <FaGoogleDrive size={20} />
+              </a>
+              <a href={`mailto:${portfolioData.personal.email}`} title="Email" className="text-gray-400 hover:text-white transition-colors p-2 glass rounded-full hover:bg-dark-700/50">
                 <Mail size={20} />
               </a>
             </div>

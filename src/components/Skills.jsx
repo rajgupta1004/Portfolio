@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Layout, Wrench } from 'lucide-react';
+import { Code2, Layout, Wrench, Sparkles } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 
 const Skills = () => {
@@ -8,24 +8,31 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Languages",
-      icon: <Code2 className="text-primary-400" size={28} />,
+      icon: <Code2 className="text-primary-400" size={26} />,
       items: skills.languages,
       borderColor: "border-primary-500/30",
-      bgColor: "bg-primary-500/5",
+      bgColor: "bg-primary-500/10",
     },
     {
       title: "Frontend",
-      icon: <Layout className="text-accent-400" size={28} />,
+      icon: <Layout className="text-accent-400" size={26} />,
       items: skills.frontend,
       borderColor: "border-accent-500/30",
-      bgColor: "bg-accent-500/5",
+      bgColor: "bg-accent-500/10",
     },
     {
-      title: "Tools",
-      icon: <Wrench className="text-gray-400" size={28} />,
+      title: "Tools & Platforms",
+      icon: <Wrench className="text-emerald-400" size={26} />,
       items: skills.tools,
-      borderColor: "border-gray-500/30",
-      bgColor: "bg-gray-500/5",
+      borderColor: "border-emerald-500/30",
+      bgColor: "bg-emerald-500/10",
+    },
+    {
+      title: "Creative & Media",
+      icon: <Sparkles className="text-pink-400" size={26} />,
+      items: skills.creative || ["Adobe Photoshop", "Graphic Design", "Video Editing", "Visual Design"],
+      borderColor: "border-pink-500/30",
+      bgColor: "bg-pink-500/10",
     }
   ];
 
@@ -36,27 +43,27 @@ const Skills = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">My <span className="text-gradient">Skills</span></h2>
           <div className="w-16 h-1 bg-gradient-to-r from-primary-500 to-accent-500 mx-auto rounded-full"></div>
-          <p className="mt-4 text-gray-400">Technologies I work with to bring ideas to life.</p>
+          <p className="mt-4 text-gray-400">Technologies and creative tools I work with to bring ideas to life.</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category, index) => (
             <div 
               key={index} 
-              className={`glass rounded-3xl p-8 border-t-2 ${category.borderColor} hover:-translate-y-2 transition-transform duration-300`}
+              className={`glass rounded-3xl p-6 border-t-2 ${category.borderColor} hover:-translate-y-2 transition-transform duration-300 flex flex-col`}
             >
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-3.5 mb-6">
                 <div className={`p-3 rounded-2xl ${category.bgColor}`}>
                   {category.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-white">{category.title}</h3>
+                <h3 className="text-lg font-semibold text-white">{category.title}</h3>
               </div>
               
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2.5 mt-auto">
                 {category.items.map((skill, i) => (
                   <span 
                     key={i} 
-                    className="px-4 py-2 bg-dark-900 border border-gray-700/50 rounded-xl text-gray-300 font-medium text-sm hover:border-gray-500 transition-colors"
+                    className="px-3 py-1.5 bg-dark-900 border border-gray-700/50 rounded-xl text-gray-300 font-medium text-xs hover:border-gray-500 transition-colors"
                   >
                     {skill}
                   </span>
@@ -72,3 +79,4 @@ const Skills = () => {
 };
 
 export default Skills;
+
