@@ -89,8 +89,32 @@ export const portfolioData = {
     }
   ],
   achievements: [
-    "1st Runner-Up — SVIET College IDEA SPARK 1.0 Ideathon",
-    "Tech Mahindra Foundation / Skill India Digital Hub — Cybersecurity Skilling Course",
-    "AI Tools & ChatGPT Workshop by be10x"
+    {
+      id: 1,
+      title: "1st Runner-Up — SVIET College IDEA SPARK 1.0 Ideathon",
+      issuer: "Swami Vivekanand Institute of Engineering & Technology",
+      date: "Sep 2026",
+      type: "image",
+      certificateUrl: "/certificates/ideaspark.jpg",
+      badge: "Ideaspark Winner"
+    },
+    {
+      id: 2,
+      title: "Tech Mahindra Foundation / Skill India Digital Hub — Cybersecurity Skilling Course",
+      issuer: "Tech Mahindra Foundation & NSDC / Skill India",
+      date: "Jul 2026",
+      type: "pdf",
+      certificateUrl: "/certificates/skill-india.pdf",
+      badge: "Govt / NSDC Certified"
+    },
+    {
+      id: 3,
+      title: "AI Tools & ChatGPT Workshop by be10x",
+      issuer: "be10x",
+      date: "Jul 2026",
+      type: "pdf",
+      certificateUrl: "/certificates/be10x.pdf",
+      badge: "Workshop Completion"
+    }
   ]
 };
