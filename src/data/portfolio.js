@@ -89,7 +89,7 @@ export const portfolioData = {
     }
   ],
   achievements: [
-    "1st Runner-Up — Chandigarh Group of Colleges IDEA SPARK 1.0 Ideathon",
+    "1st Runner-Up — SVIET College IDEA SPARK 1.0 Ideathon",
     "Tech Mahindra Foundation / Skill India Digital Hub — Cybersecurity Skilling Course",
     "AI Tools & ChatGPT Workshop by be10x"
   ]
