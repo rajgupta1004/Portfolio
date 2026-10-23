@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Space Grotesk', 'Plus Jakarta Sans', 'sans-serif'],
       },
       colors: {
         dark: {
@@ -18,6 +19,13 @@ export default {
           750: '#162342',
           700: '#1e2e54',
           600: '#334773',
+        },
+        electric: {
+          cyan: '#00f5ff',
+          sky: '#38bdf8',
+          blue: '#3b82f6',
+          indigo: '#6366f1',
+          violet: '#8b5cf6',
         },
         primary: {
           400: '#60a5fa',
@@ -47,12 +55,19 @@ export default {
         'glow-accent': '0 0 25px -5px rgba(139, 92, 246, 0.3)',
         'glow-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.35)',
         'glow-pink': '0 0 25px -5px rgba(236, 72, 153, 0.35)',
+        'electric-cyan': '0 0 35px -5px rgba(0, 245, 255, 0.35)',
+        'electric-blue': '0 0 40px -5px rgba(59, 130, 246, 0.4)',
+        'electric-rim': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 0 25px rgba(0, 245, 255, 0.15)',
         'glass-card': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
+        'float-slow': 'float 8s ease-in-out infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'glow': 'glow 3s ease-in-out infinite alternate',
+        'aurora-drift': 'auroraDrift 14s ease-in-out infinite alternate',
+        'light-sweep': 'lightSweep 8s ease-in-out infinite',
+        'beam-travel': 'beamTravel 10s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -62,9 +77,23 @@ export default {
         glow: {
           '0%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(59,130,246,0.3))' },
           '100%': { opacity: '0.8', filter: 'drop-shadow(0 0 25px rgba(139,92,246,0.5))' },
+        },
+        auroraDrift: {
+          '0%': { transform: 'translate(0px, 0px) scale(1)' },
+          '50%': { transform: 'translate(25px, -20px) scale(1.08)' },
+          '100%': { transform: 'translate(-20px, 15px) scale(0.96)' },
+        },
+        lightSweep: {
+          '0%, 100%': { opacity: '0.2', transform: 'translateX(-30%) rotate(-12deg)' },
+          '50%': { opacity: '0.55', transform: 'translateX(30%) rotate(-6deg)' },
+        },
+        beamTravel: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(200%)' },
         }
       }
     },
   },
   plugins: [],
 }
+

@@ -344,4 +344,316 @@
   }
 }
 
+/* ==========================================================================
+   Cinematic Motion Design System & Electric Blue Lighting
+   ========================================================================== */
+
+/* Hardware accelerated smooth transitions */
+.gpu-accel {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Blur to Focus Entrance Keyframes */
+@keyframes blurToFocus {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+
+@keyframes wordReveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(115%);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+
+@keyframes electricPulseSlow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+    filter: blur(120px);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.08);
+    filter: blur(100px);
+  }
+}
+
+@keyframes lightStreakHorizontal {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(250%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes borderGlowRun {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Scroll-triggered reveal base classes */
+.cinematic-reveal {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(32px);
+  transition: 
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+.cinematic-reveal.is-revealed {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0);
+}
+
+.cinematic-reveal-scale {
+  opacity: 0;
+  filter: blur(10px);
+  transform: scale(0.92) translateY(20px);
+  transition: 
+    opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+.cinematic-reveal-scale.is-revealed {
+  opacity: 1;
+  filter: blur(0px);
+  transform: scale(1) translateY(0);
+}
+
+.cinematic-reveal-left {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateX(-35px);
+  transition: 
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+.cinematic-reveal-left.is-revealed {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateX(0);
+}
+
+.cinematic-reveal-right {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateX(35px);
+  transition: 
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+.cinematic-reveal-right.is-revealed {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateX(0);
+}
+
+/* Stagger transition delay helpers */
+.delay-75  { transition-delay: 75ms; }
+.delay-150 { transition-delay: 150ms; }
+.delay-225 { transition-delay: 225ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-375 { transition-delay: 375ms; }
+.delay-450 { transition-delay: 450ms; }
+.delay-525 { transition-delay: 525ms; }
+.delay-600 { transition-delay: 600ms; }
+
+/* Text Masking and Word Reveal System */
+.text-mask-container {
+  overflow: hidden;
+  display: inline-flex;
+  vertical-align: bottom;
+  padding-bottom: 2px;
+}
+
+.text-mask-word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(115%);
+  transition: 
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+.text-mask-word.word-revealed {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0);
+}
+
+/* Electric Blue Ambient Lighting Utilities */
+.electric-halo {
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.18) 0%, rgba(59, 130, 246, 0.14) 40%, rgba(99, 102, 241, 0.05) 70%, transparent 100%);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.electric-glow-border {
+  position: relative;
+}
+
+.electric-glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.5), rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+}
+
+.electric-glow-border:hover::before {
+  opacity: 1;
+}
+
+/* Subtle moving light streak on hero */
+.cinematic-light-streak {
+  position: absolute;
+  width: 280px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 245, 255, 0.09) 50%, transparent 100%);
+  pointer-events: none;
+  animation: lightStreakHorizontal 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Interactive Portrait Card 3D tilt */
+.portrait-container {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Interactive Project Card Hover */
+.project-card-interactive {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card-interactive:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0, 245, 255, 0.15), 0 0 25px 0 rgba(59, 130, 246, 0.12);
+  border-color: rgba(0, 245, 255, 0.45);
+}
+
+/* Premium Button Hover with directional lift & glow */
+.btn-cinematic {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-cinematic::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-25deg);
+  transition: none;
+}
+
+.btn-cinematic:hover::after {
+  left: 140%;
+  transition: left 0.75s ease-in-out;
+}
+
+.btn-cinematic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 245, 255, 0.35), 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.btn-cinematic:active {
+  transform: translateY(0);
+}
+
+/* Accessibility: Full Respect for Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .cinematic-reveal,
+  .cinematic-reveal-scale,
+  .cinematic-reveal-left,
+  .cinematic-reveal-right,
+  .text-mask-word {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  .cinematic-light-streak {
+    display: none !important;
+  }
+}
+
+
 

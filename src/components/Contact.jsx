@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Copy, Check, Sparkles, Database, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Copy, Check, Database, Clock, MessageSquare } from 'lucide-react';
 import { FaGoogleDrive, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { portfolioData } from '../data/portfolio';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,20 +14,18 @@ const Contact = () => {
   const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState('');
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [messageHistory, setMessageHistory] = useState([]);
   const [showDbLog, setShowDbLog] = useState(false);
+  const [sectionRef, isRevealed] = useScrollReveal({ threshold: 0.1 });
 
-  // Load sent messages from localStorage (client database)
-  useEffect(() => {
+  // Load sent messages using lazy state initializer (React 19 & oxlint compliant)
+  const [messageHistory, setMessageHistory] = useState(() => {
     try {
       const saved = localStorage.getItem('raj_portfolio_messages');
-      if (saved) {
-        setMessageHistory(JSON.parse(saved));
-      }
+      return saved ? JSON.parse(saved) : [];
     } catch {
-      // ignore
+      return [];
     }
-  }, []);
+  });
 
   const serviceOptions = [
     'Full Stack & Web Development',
@@ -98,7 +97,6 @@ const Contact = () => {
       }
     } catch (err) {
       console.error('Contact submission error:', err);
-      // Even if network blocks FormSubmit, backup save locally and provide fallback
       setStatus('error');
       setErrorMessage('Could not send via automated gateway. You can also send directly via email application.');
     }
@@ -106,7 +104,7 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: <Mail className="text-primary-400" size={22} />,
+      icon: <Mail className="text-cyan-400" size={22} />,
       label: "Direct Email",
       value: portfolioData.personal.email,
       href: `mailto:${portfolioData.personal.email}`,
@@ -121,7 +119,7 @@ const Contact = () => {
       badge: "+91"
     },
     {
-      icon: <MapPin className="text-cyan-400" size={22} />,
+      icon: <MapPin className="text-emerald-400" size={22} />,
       label: "Location",
       value: portfolioData.personal.location,
       href: null
@@ -129,45 +127,48 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-28 relative">
+    <section id="contact" ref={sectionRef} className="py-28 relative overflow-hidden">
+      {/* Background Electric Bloom */}
+      <div className="absolute bottom-10 right-10 w-[550px] h-[550px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-primary-500/10 border border-primary-500/30 text-primary-300 mb-4 backdrop-blur-md">
-            <Sparkles size={14} />
-            Let's Collaborate
+        <div className={`text-center mb-16 cinematic-reveal ${isRevealed ? 'is-revealed' : ''}`}>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 mb-4 backdrop-blur-md">
+            <MessageSquare size={14} className="text-cyan-400" />
+            <span>Direct Communications</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">
             Get in <span className="text-gradient">Touch With Me</span>
           </h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-primary-500 via-accent-500 to-pink-500 mx-auto rounded-full"></div>
-          <p className="mt-4 text-gray-400 max-w-xl mx-auto text-base">
-            Have a project in mind, need graphic design/video editing, or want to discuss opportunities? Send a message directly to my inbox.
+          <div className="w-20 h-1.5 bg-gradient-to-r from-cyan-400 via-primary-500 to-accent-500 mx-auto rounded-full" />
+          <p className="mt-4 text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+            Have a project in mind, need graphic design/video editing, or want to discuss engineering roles? Drop a message directly to my inbox.
           </p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* Left Column: Contact Cards & Quick Connect */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="glass-card rounded-3xl p-8 space-y-6 border border-white/[0.08]">
+          {/* Left Column: Direct Info Cards */}
+          <div className={`lg:col-span-5 space-y-6 cinematic-reveal-left ${isRevealed ? 'is-revealed' : ''}`}>
+            <div className="glass-card rounded-3xl p-8 space-y-6 border border-white/[0.08] electric-glow-border">
               <h3 className="text-2xl font-bold text-white flex items-center gap-2.5">
                 <span>Reach Out Directly</span>
-                <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
               </h3>
               <p className="text-gray-400 text-sm leading-relaxed">
-                I am actively open to frontend/full stack development roles, graphic design projects, and video editing collaborations.
+                I am actively open to frontend/full stack development roles, creative graphic design commissions, and video editing collaborations.
               </p>
               
               <div className="space-y-4 pt-2">
                 {contactInfo.map((info, index) => (
                   <div 
                     key={index} 
-                    className="flex items-center justify-between glass p-4 rounded-2xl hover:border-primary-500/40 hover:bg-dark-800/80 transition-all duration-300 group"
+                    className="flex items-center justify-between glass p-4 rounded-2xl hover:border-cyan-400/40 hover:bg-dark-800/80 hover:shadow-glow-cyan transition-all duration-300 group"
                   >
                     <div className="flex items-center gap-4 min-w-0">
-                      <div className="p-3 bg-dark-950/80 border border-white/[0.05] rounded-xl group-hover:scale-110 transition-transform">
+                      <div className="p-3 bg-dark-950/80 border border-white/[0.05] rounded-xl group-hover:scale-110 transition-transform duration-300">
                         {info.icon}
                       </div>
                       <div className="min-w-0">
@@ -175,7 +176,7 @@ const Contact = () => {
                         {info.href ? (
                           <a 
                             href={info.href} 
-                            className="text-white hover:text-primary-400 font-semibold text-sm sm:text-base transition-colors truncate block"
+                            className="text-white hover:text-cyan-300 font-semibold text-sm sm:text-base transition-colors truncate block"
                           >
                             {info.value}
                           </a>
@@ -200,16 +201,16 @@ const Contact = () => {
               </div>
 
               {/* Quick Drive Portfolios Access Card */}
-              <div className="pt-4 border-t border-gray-800/80">
+              <div className="pt-4 border-t border-white/[0.08]">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
-                  Direct Drive Portfolios & Links
+                  Direct Drive Portfolios &amp; Links
                 </p>
                 <div className="grid grid-cols-2 gap-3">
                   <a
                     href={portfolioData.personal.photoshopDrive}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 p-3 bg-pink-500/10 hover:bg-pink-500/20 border border-pink-500/30 rounded-xl text-pink-300 text-xs font-semibold transition-all hover:scale-[1.02]"
+                    className="btn-cinematic flex items-center gap-2 p-3 bg-pink-500/10 hover:bg-pink-500/20 border border-pink-500/30 rounded-xl text-pink-300 text-xs font-semibold transition-all hover:scale-[1.02]"
                   >
                     <FaGoogleDrive size={15} />
                     <span className="truncate">Photoshop Drive</span>
@@ -218,7 +219,7 @@ const Contact = () => {
                     href={portfolioData.personal.videoEditingDrive}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 p-3 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-xl text-amber-300 text-xs font-semibold transition-all hover:scale-[1.02]"
+                    className="btn-cinematic flex items-center gap-2 p-3 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-xl text-amber-300 text-xs font-semibold transition-all hover:scale-[1.02]"
                   >
                     <FaGoogleDrive size={15} />
                     <span className="truncate">Video Drive</span>
@@ -232,7 +233,7 @@ const Contact = () => {
                   href={portfolioData.personal.github} 
                   target="_blank" 
                   rel="noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-dark-950/80 hover:bg-dark-700/80 border border-white/[0.08] hover:border-gray-500 rounded-xl text-xs font-semibold text-gray-300 hover:text-white transition-all"
+                  className="btn-cinematic flex-1 flex items-center justify-center gap-2 py-2.5 bg-dark-950/80 hover:bg-dark-700/80 border border-white/[0.08] hover:border-gray-500 rounded-xl text-xs font-semibold text-gray-300 hover:text-white transition-all"
                 >
                   <FaGithub size={16} />
                   <span>GitHub</span>
@@ -241,7 +242,7 @@ const Contact = () => {
                   href={portfolioData.personal.linkedin} 
                   target="_blank" 
                   rel="noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-dark-950/80 hover:bg-dark-700/80 border border-white/[0.08] hover:border-primary-500 rounded-xl text-xs font-semibold text-gray-300 hover:text-white transition-all"
+                  className="btn-cinematic flex-1 flex items-center justify-center gap-2 py-2.5 bg-dark-950/80 hover:bg-dark-700/80 border border-white/[0.08] hover:border-cyan-400/50 rounded-xl text-xs font-semibold text-gray-300 hover:text-white transition-all"
                 >
                   <FaLinkedin size={16} />
                   <span>LinkedIn</span>
@@ -255,13 +256,13 @@ const Contact = () => {
                 <button
                   type="button"
                   onClick={() => setShowDbLog(!showDbLog)}
-                  className="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-primary-400 transition-colors"
+                  className="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-cyan-400 transition-colors"
                 >
                   <span className="flex items-center gap-2">
                     <Database size={15} className="text-accent-400" />
                     <span>Sent Messages Database ({messageHistory.length})</span>
                   </span>
-                  <span className="text-primary-400 underline">{showDbLog ? 'Hide' : 'View'}</span>
+                  <span className="text-cyan-400 underline">{showDbLog ? 'Hide' : 'View'}</span>
                 </button>
 
                 {showDbLog && (
@@ -275,7 +276,7 @@ const Contact = () => {
                             {item.timestamp}
                           </span>
                         </div>
-                        <p className="text-primary-300 text-[11px] mb-1">{item.service}</p>
+                        <p className="text-cyan-300 text-[11px] mb-1">{item.service}</p>
                         <p className="text-gray-400 text-[11px] line-clamp-2">{item.message}</p>
                       </div>
                     ))}
@@ -286,20 +287,20 @@ const Contact = () => {
           </div>
           
           {/* Right Column: Interactive Email Form */}
-          <div className="lg:col-span-7">
-            <div className="glass-card rounded-3xl p-8 md:p-10 relative overflow-hidden border border-white/[0.08]">
+          <div className={`lg:col-span-7 cinematic-reveal-right ${isRevealed ? 'is-revealed' : ''}`}>
+            <div className="glass-card rounded-3xl p-8 md:p-10 relative overflow-hidden border border-white/[0.08] electric-glow-border">
               {/* Subtle ambient glows */}
-              <div className="absolute -top-24 -right-24 w-60 h-60 bg-primary-600/15 rounded-full blur-3xl pointer-events-none"></div>
-              <div className="absolute -bottom-24 -left-24 w-60 h-60 bg-accent-600/15 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="absolute -top-24 -right-24 w-60 h-60 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-24 -left-24 w-60 h-60 bg-accent-600/15 rounded-full blur-3xl pointer-events-none" />
               
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-6">
                   <div>
-                    <h3 className="text-2xl font-bold text-white">Send Message Directly</h3>
+                    <h3 className="text-2xl font-bold text-white">Send Direct Dispatch</h3>
                     <p className="text-gray-400 text-xs sm:text-sm mt-1">Delivers immediately to {portfolioData.personal.email}</p>
                   </div>
-                  <div className="p-3 bg-primary-500/10 border border-primary-500/20 rounded-2xl hidden sm:flex">
-                    <Send className="text-primary-400" size={20} />
+                  <div className="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl hidden sm:flex text-cyan-400">
+                    <Send size={20} />
                   </div>
                 </div>
                 
@@ -317,7 +318,7 @@ const Contact = () => {
                     <button
                       type="button"
                       onClick={() => setStatus('idle')}
-                      className="px-6 py-2.5 bg-dark-800 hover:bg-dark-700 border border-gray-700 rounded-xl text-sm font-semibold text-white transition-all"
+                      className="btn-cinematic px-6 py-2.5 bg-dark-800 hover:bg-dark-700 border border-gray-700 rounded-xl text-sm font-semibold text-white transition-all"
                     >
                       Send Another Message
                     </button>
@@ -335,9 +336,9 @@ const Contact = () => {
                             key={opt}
                             type="button"
                             onClick={() => setFormData({ ...formData, service: opt })}
-                            className={`px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${
+                            className={`px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 ${
                               formData.service === opt
-                                ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-md shadow-primary-500/25 border border-primary-400/40'
+                                ? 'bg-gradient-to-r from-cyan-500 via-primary-600 to-accent-600 text-white shadow-md shadow-cyan-500/25 border border-cyan-400/40'
                                 : 'bg-dark-950/70 text-gray-400 hover:text-white border border-white/[0.06] hover:bg-dark-800/80'
                             }`}
                           >
@@ -351,7 +352,7 @@ const Contact = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
                         <label htmlFor="name" className="text-xs font-semibold text-gray-300">
-                          Your Full Name <span className="text-primary-400">*</span>
+                          Your Full Name <span className="text-cyan-400">*</span>
                         </label>
                         <input 
                           type="text" 
@@ -361,14 +362,14 @@ const Contact = () => {
                           onChange={handleChange}
                           required
                           disabled={status === 'loading'}
-                          className="w-full bg-dark-950/80 border border-white/[0.08] focus:border-primary-500 focus:ring-1 focus:ring-primary-500 rounded-xl px-4 py-3 text-white text-sm focus:outline-none transition-all placeholder:text-gray-600 disabled:opacity-50"
+                          className="w-full bg-dark-950/80 border border-white/[0.08] focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 rounded-xl px-4 py-3 text-white text-sm focus:outline-none transition-all placeholder:text-gray-600 disabled:opacity-50"
                           placeholder="e.g. Alex Johnson"
                         />
                       </div>
                       
                       <div className="space-y-1.5">
                         <label htmlFor="email" className="text-xs font-semibold text-gray-300">
-                          Your Email Address <span className="text-primary-400">*</span>
+                          Your Email Address <span className="text-cyan-400">*</span>
                         </label>
                         <input 
                           type="email" 
@@ -378,7 +379,7 @@ const Contact = () => {
                           onChange={handleChange}
                           required
                           disabled={status === 'loading'}
-                          className="w-full bg-dark-950/80 border border-white/[0.08] focus:border-primary-500 focus:ring-1 focus:ring-primary-500 rounded-xl px-4 py-3 text-white text-sm focus:outline-none transition-all placeholder:text-gray-600 disabled:opacity-50"
+                          className="w-full bg-dark-950/80 border border-white/[0.08] focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 rounded-xl px-4 py-3 text-white text-sm focus:outline-none transition-all placeholder:text-gray-600 disabled:opacity-50"
                           placeholder="alex@company.com"
                         />
                       </div>
@@ -387,7 +388,7 @@ const Contact = () => {
                     {/* Message Textarea */}
                     <div className="space-y-1.5">
                       <label htmlFor="message" className="text-xs font-semibold text-gray-300">
-                        Your Message <span className="text-primary-400">*</span>
+                        Your Message <span className="text-cyan-400">*</span>
                       </label>
                       <textarea 
                         id="message"
@@ -397,9 +398,9 @@ const Contact = () => {
                         required
                         rows="4"
                         disabled={status === 'loading'}
-                        className="w-full bg-dark-950/80 border border-white/[0.08] focus:border-primary-500 focus:ring-1 focus:ring-primary-500 rounded-xl px-4 py-3 text-white text-sm focus:outline-none transition-all placeholder:text-gray-600 resize-none disabled:opacity-50"
+                        className="w-full bg-dark-950/80 border border-white/[0.08] focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 rounded-xl px-4 py-3 text-white text-sm focus:outline-none transition-all placeholder:text-gray-600 resize-none disabled:opacity-50"
                         placeholder="Hi Raj, I'd like to discuss a project / role regarding..."
-                      ></textarea>
+                      />
                     </div>
 
                     {/* Error Banner if any */}
@@ -410,7 +411,7 @@ const Contact = () => {
                           <p className="text-red-300 font-semibold">{errorMessage}</p>
                           <a 
                             href={`mailto:${portfolioData.personal.email}?subject=Inquiry regarding ${formData.service}&body=${encodeURIComponent(formData.message)}`}
-                            className="inline-block text-primary-400 underline font-semibold hover:text-primary-300"
+                            className="inline-block text-cyan-400 underline font-semibold hover:text-cyan-300"
                           >
                             Click here to send directly via your Mail client
                           </a>
@@ -422,7 +423,7 @@ const Contact = () => {
                     <button 
                       type="submit"
                       disabled={status === 'loading'}
-                      className="w-full py-4 bg-gradient-to-r from-primary-600 via-indigo-600 to-accent-600 hover:from-primary-500 hover:to-accent-500 disabled:opacity-60 rounded-xl text-white font-semibold flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 active:scale-[0.99] cursor-pointer"
+                      className="btn-cinematic w-full py-4 bg-gradient-to-r from-cyan-500 via-primary-600 to-accent-600 hover:from-cyan-400 hover:to-accent-500 disabled:opacity-60 rounded-xl text-white font-semibold flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-cyan-500/25 hover:shadow-electric-cyan active:scale-[0.99] cursor-pointer"
                     >
                       {status === 'loading' ? (
                         <>
@@ -449,4 +450,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
