@@ -1,4 +1,5 @@
 import React from 'react';
+import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,6 +12,9 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className="min-h-screen bg-dark-950 text-gray-100 font-sans relative selection:bg-primary-500 selection:text-white overflow-x-hidden">
+      {/* Custom Cyber High-Tech Cursor */}
+      <CustomCursor />
+
       {/* Dynamic Ambient Background Elements */}
       <div className="fixed inset-0 bg-cyber-grid opacity-60 pointer-events-none z-0"></div>
       

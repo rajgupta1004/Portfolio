@@ -61,3 +61,287 @@
   }
 }
 
+/* ==========================================================================
+   Futuristic Cyber Cursor
+   ========================================================================== */
+
+/* Cursor Container: strictly pointer-events: none and isolated from interactions */
+.custom-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none !important;
+  user-select: none !important;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-cursor-container.is-visible {
+  opacity: 1;
+}
+
+/* Hide native OS cursor ONLY on fine pointer devices when custom cursor is active */
+@media (pointer: fine) and (hover: hover) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor [role="button"],
+  body.has-custom-cursor .cursor-pointer {
+    cursor: none !important;
+  }
+
+  body.has-custom-cursor input,
+  body.has-custom-cursor textarea,
+  body.has-custom-cursor select {
+    cursor: text !important;
+  }
+}
+
+/* Sharp Electric-Cyan Central Dot */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  border-radius: 9999px;
+  background-color: #00f5ff;
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.45),
+    0 0 8px 1px #00f5ff,
+    0 0 16px 2px rgba(6, 182, 212, 0.65);
+  pointer-events: none !important;
+  will-change: transform;
+  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              margin 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              box-shadow 0.2s ease,
+              opacity 0.2s ease;
+}
+
+/* Fluid Outer Cyber HUD Ring */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  margin-top: -19px;
+  margin-left: -19px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(34, 211, 238, 0.55);
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, rgba(6, 182, 212, 0.02) 65%, transparent 100%);
+  box-shadow: 
+    0 0 12px rgba(6, 182, 212, 0.3),
+    inset 0 0 8px rgba(6, 182, 212, 0.15);
+  pointer-events: none !important;
+  will-change: transform;
+  transition: width 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              height 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              margin 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.25s ease,
+              border-width 0.2s ease,
+              background-color 0.25s ease,
+              box-shadow 0.25s ease,
+              opacity 0.25s ease;
+}
+
+/* Cyber Reticle Ticks */
+.cursor-ring-reticle {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.25s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cursor-ring-reticle::before,
+.cursor-ring-reticle::after {
+  content: '';
+  position: absolute;
+  background: #22d3ee;
+  box-shadow: 0 0 4px #00f5ff;
+}
+
+.cursor-ring-reticle::before {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  margin-left: -0.5px;
+  opacity: 0.5;
+  mask-image: linear-gradient(to bottom, #000 3px, transparent 3px, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  -webkit-mask-image: linear-gradient(to bottom, #000 3px, transparent 3px, transparent calc(100% - 3px), #000 calc(100% - 3px));
+}
+
+.cursor-ring-reticle::after {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  margin-top: -0.5px;
+  opacity: 0.5;
+  mask-image: linear-gradient(to right, #000 3px, transparent 3px, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  -webkit-mask-image: linear-gradient(to right, #000 3px, transparent 3px, transparent calc(100% - 3px), #000 calc(100% - 3px));
+}
+
+/* Minimal Trailing Micro-Nodes */
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none !important;
+  will-change: transform;
+  transition: opacity 0.2s ease;
+}
+
+.cursor-trail.trail-1 {
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
+  margin-left: -2px;
+  background-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.4);
+}
+
+.cursor-trail.trail-2 {
+  width: 3px;
+  height: 3px;
+  margin-top: -1.5px;
+  margin-left: -1.5px;
+  background-color: rgba(6, 182, 212, 0.35);
+  box-shadow: 0 0 5px rgba(6, 182, 212, 0.25);
+}
+
+.cursor-trail.trail-3 {
+  width: 2px;
+  height: 2px;
+  margin-top: -1px;
+  margin-left: -1px;
+  background-color: rgba(6, 182, 212, 0.2);
+  box-shadow: 0 0 4px rgba(6, 182, 212, 0.15);
+}
+
+/* Hover State: Clickable Elements (Buttons, Links, Selectors) */
+.custom-cursor-container.is-hovered .cursor-ring,
+.custom-cursor-container.is-card-btn-hovered .cursor-ring {
+  width: 54px;
+  height: 54px;
+  margin-top: -27px;
+  margin-left: -27px;
+  border-color: rgba(34, 211, 238, 0.95);
+  background-color: rgba(6, 182, 212, 0.12);
+  box-shadow: 
+    0 0 20px rgba(34, 211, 238, 0.5),
+    inset 0 0 12px rgba(34, 211, 238, 0.25);
+}
+
+.custom-cursor-container.is-hovered .cursor-dot,
+.custom-cursor-container.is-card-btn-hovered .cursor-dot {
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  margin-left: -4px;
+  background-color: #38bdf8;
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.45),
+    0 0 12px 2px #38bdf8;
+}
+
+.custom-cursor-container.is-hovered .cursor-ring-reticle,
+.custom-cursor-container.is-card-btn-hovered .cursor-ring-reticle {
+  opacity: 0.95;
+  transform: rotate(45deg);
+}
+
+/* Hover State: Project & Showcase Cards */
+.custom-cursor-container.is-card-hovered .cursor-ring {
+  width: 66px;
+  height: 66px;
+  margin-top: -33px;
+  margin-left: -33px;
+  border-color: rgba(34, 211, 238, 0.7);
+  background-color: rgba(6, 182, 212, 0.06);
+  box-shadow: 
+    0 0 26px rgba(6, 182, 212, 0.35),
+    inset 0 0 16px rgba(6, 182, 212, 0.12);
+}
+
+.custom-cursor-container.is-card-hovered .cursor-ring-reticle {
+  opacity: 0.85;
+  transform: rotate(90deg);
+}
+
+/* Active State: Click / Mouse Down */
+.custom-cursor-container.is-active .cursor-ring {
+  width: 28px;
+  height: 28px;
+  margin-top: -14px;
+  margin-left: -14px;
+  border-width: 2px;
+  border-color: #00f5ff;
+  background-color: rgba(0, 245, 255, 0.2);
+  box-shadow: 
+    0 0 22px rgba(0, 245, 255, 0.8),
+    inset 0 0 10px rgba(0, 245, 255, 0.4);
+}
+
+.custom-cursor-container.is-active .cursor-dot {
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
+  margin-left: -2px;
+  box-shadow: 0 0 14px 3px #00f5ff;
+}
+
+/* Hover State: Text Fields / Inputs */
+.custom-cursor-container.is-text .cursor-ring {
+  opacity: 0.25;
+  width: 24px;
+  height: 24px;
+  margin-top: -12px;
+  margin-left: -12px;
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+.custom-cursor-container.is-text .cursor-dot {
+  opacity: 0.7;
+}
+
+.custom-cursor-container.is-text .cursor-trail {
+  opacity: 0.2;
+}
+
+/* Touch & Small Screen Safety: completely disabled */
+@media not all and (pointer: fine) and (hover: hover) {
+  .custom-cursor-container {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) and (pointer: coarse) {
+  .custom-cursor-container {
+    display: none !important;
+  }
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-container * {
+    transition: none !important;
+    animation: none !important;
+  }
+  .cursor-trail {
+    display: none !important;
+  }
+}
+
+
